@@ -1,0 +1,5 @@
+source /etc/zsh_command_not_found
+
+eval $(thefuck --alias)
+eval $(/data/bin/exports.py)
+eval $(/data/bin/aliases.py)
