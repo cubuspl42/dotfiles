@@ -1,0 +1,7 @@
+PATH:
+  - $PATH
+  - ~/bin
+  - ~/.linuxbrew/bin
+  - /data/bin
+JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64/
+EDITOR: /usr/bin/vim

@@ -1,0 +1,5 @@
+agu: sudo apt-get update
+agi: sudo apt-get install -y
+zrc: source ~/.zshrc
+dog: pygmentize -g -O style=colorful,linenos=1
+tb: nc termbin.com 9999
