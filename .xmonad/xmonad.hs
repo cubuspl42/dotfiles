@@ -11,7 +11,6 @@ shellSpawn s = do
 
 myStartupHook = do
     spawn "taffybar"
-    spawn "launchy"
     setWMName "LG3D"
 
 myManageHook = 
@@ -28,6 +27,7 @@ main = xmonad $ bluetileConfig
     , borderWidth = 2
     , startupHook = myStartupHook
     , manageHook = myManageHook
+    , terminal = "xterm"
     }
     `additionalKeys`
      [((modm .|. controlMask, k), windows $ swapWithCurrent i)
