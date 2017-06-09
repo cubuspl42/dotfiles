@@ -1,8 +1,8 @@
-all: rat-fix utils fuck oh-my-zsh cp-dotfiles cp-bin mk-tmp chrome exfat neovim fzf hub
+all: rat-fix utils fuck oh-my-zsh cp-dotfiles cp-bin mk-tmp chrome exfat neovim fzf ssh-key cp-sudoers sublime3
 
 utils:
 	sudo apt -y install \
-		tree unp rofi xsel
+		tree unp rofi xsel mtools qemu
 
 /bin/zsh:
 	sudo apt-get -y install zsh
@@ -25,6 +25,11 @@ mk-tmp: ~/tmp
 
 cp-dotfiles:
 	cp -r dotfiles/. ~
+
+/etc/sudoers.d/kuba:
+	sudo cp .$@ $@
+
+cp-sudoers: /etc/sudoers.d/kuba
 
 ~/.oh-my-zsh:
 	sh -c "$$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
@@ -94,12 +99,36 @@ golang: /usr/bin/go
 
 ruby: /usr/bin/ruby
 
-bundler: ruby
+/usr/local/bin/bundle: ruby
 	sudo gem install bundler
 
-/usr/local/bin/hub: ~/code golang bundler
+bundler: /usr/local/bin/bundle
+
+/usr/local/bin/hub: /usr/bin/go /usr/local/bin/bundle
 	git clone https://github.com/github/hub.git ~/code/hub
 	make -C ~/code/hub
 	sudo make -C ~/code/hub install prefix=/usr/local
 
 hub: /usr/local/bin/hub
+
+~/.ssh/id_rsa:
+	ssh-keygen -t rsa -b 4096 -C "cubuspl42@gmail.com" -N "" -f ~/.ssh/id_rsa
+	eval "$(ssh-agent -s)"
+	ssh-add ~/.ssh/id_rsa
+
+ssh-key: ~/.ssh/id_rsa
+
+/usr/bin/xsel:
+	sudo apt -y install xsel
+
+xsel: /usr/bin/xsel
+
+update-editor:
+	sudo update-alternatives --config editor
+
+/usr/bin/subl:
+	sudo add-apt-repository ppa:webupd8team/sublime-text-3
+	sudo apt-get update
+	sudo apt-get install sublime-text-installer
+
+sublime3: /usr/bin/subl
