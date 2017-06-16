@@ -99,18 +99,6 @@ golang: /usr/bin/go
 
 ruby: /usr/bin/ruby
 
-/usr/local/bin/bundle: ruby
-	sudo gem install bundler
-
-bundler: /usr/local/bin/bundle
-
-/usr/local/bin/hub: /usr/bin/go /usr/local/bin/bundle
-	git clone https://github.com/github/hub.git ~/code/hub
-	make -C ~/code/hub
-	sudo make -C ~/code/hub install prefix=/usr/local
-
-hub: /usr/local/bin/hub
-
 ~/.ssh/id_rsa:
 	ssh-keygen -t rsa -b 4096 -C "cubuspl42@gmail.com" -N "" -f ~/.ssh/id_rsa
 	eval "$(ssh-agent -s)"
@@ -132,3 +120,19 @@ update-editor:
 	sudo apt-get install sublime-text-installer
 
 sublime3: /usr/bin/subl
+
+/usr/bin/umake:
+	sudo apt-get -y install ubuntu-make
+
+umake: /usr/bin/umake
+
+idea: umake /home/kuba/.local/share/umake/ide/idea
+	umake ide idea
+
+~/local/bin/hub:
+	wget -O /tmp/hub.tgz https://github.com/github/hub/releases/download/v2.2.9/hub-linux-amd64-2.2.9.tgz
+	tar -xvzf /tmp/hub.tgz -C /tmp
+	mkdir -p ~/local/bin
+	cp /tmp/hub-linux-amd64-2.2.9/bin/hub ~/local/bin
+
+hub: ~/local/bin/hub

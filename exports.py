@@ -13,7 +13,7 @@ def export(var, values):
 		value = ':'.join(values)
 	return'export %s=%s' % (var, value)
 
-with open(path.join(home, '.exports.yaml')) as file:
+with open(path.join(home, 'dotfiles/exports.yaml')) as file:
 	doc = yaml.load(file)
 	lines = [export(k, v) for k, v in doc.items()]
 	print('\n'.join(lines))

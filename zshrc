@@ -1,4 +1,4 @@
 source /etc/zsh_command_not_found
 
 eval $(thefuck --alias)
-eval $(~/bin/aliases.py)
+eval $(~/dotfiles/aliases.py)

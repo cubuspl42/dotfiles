@@ -1,0 +1,1 @@
+eval $(~/dotfiles/exports.py)
