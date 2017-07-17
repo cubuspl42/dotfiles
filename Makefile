@@ -141,3 +141,6 @@ idea: umake /home/kuba/.local/share/umake/ide/idea
 	cp /tmp/hub-linux-amd64-2.2.9/bin/hub ~/local/bin
 
 hub: ~/local/bin/hub
+
+gitconfig-include-common:
+	cat ~/dotfiles/include.common.gitconfig >> ~/.gitconfig
