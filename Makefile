@@ -31,7 +31,12 @@ cp-dotfiles:
 
 cp-sudoers: /etc/sudoers.d/kuba
 
-~/.oh-my-zsh:
+/bin/zsh:
+	sudo apt-get -y install zsh
+
+zsh: /bin/zsh
+
+~/.oh-my-zsh: zsh
 	sh -c "$$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 	echo "source ~/.myzshrc" >> ~/.zshrc
 
