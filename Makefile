@@ -4,9 +4,6 @@ utils:
 	sudo apt -y install \
 		tree unp rofi xsel mtools qemu
 
-/bin/zsh:
-	sudo apt-get -y install zsh
-
 /etc/X11/xorg.conf.d/910-rat.conf:
 	sudo mkdir -p /etc/X11/xorg.conf.d/GH
 	sudo cp ./etc/X11/xorg.conf.d/910-rat.conf /etc/X11/xorg.conf.d/910-rat.conf
