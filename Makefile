@@ -141,3 +141,8 @@ hub: ~/local/bin/hub
 
 gitconfig-include-common:
 	cat ~/dotfiles/include.common.gitconfig >> ~/.gitconfig
+
+/home/kuba/.local/share/umake/ide/clion:
+	umake ide clion
+
+clion: umake /home/kuba/.local/share/umake/ide/clion
